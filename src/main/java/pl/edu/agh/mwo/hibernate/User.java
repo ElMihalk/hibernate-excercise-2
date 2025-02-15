@@ -73,4 +73,5 @@ public class User {
     public String toString() {
         return "Album{" + "id=" + id + ", username=" + username + ", joinDate" + joinDate + '}';
     }
+
 }

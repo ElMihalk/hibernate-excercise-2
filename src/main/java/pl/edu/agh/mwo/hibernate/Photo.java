@@ -40,4 +40,6 @@ public class Photo {
     public String toString() {
         return "Photo{" + "id=" + id + ", name=" + name + ", date" + date + '}';
     }
+
+
 }
