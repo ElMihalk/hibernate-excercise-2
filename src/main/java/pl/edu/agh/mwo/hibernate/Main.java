@@ -12,6 +12,9 @@ public class Main {
 
 	public static void main(String[] args) {
 		Main main = new Main();
+//		1. Dodaj użytkowników, albumy, zdjęcia, polubienia.
+//		main.addUser();
+
 		main.printUsers();
 		// tu wstaw kod aplikacji
 		
@@ -45,10 +48,18 @@ public class Main {
 
 	public void addUser(){
 		User user = new User("JohnSmith12", "30.12.2024");
+		Album album = new Album("Album 5", "Góry");
+		Photo photo = new Photo("Giewont", "01.01.2025");
+		album.addPhoto(photo);
+		user.addAlbum(album);
+		user.addPhoto(photo);
+		photo.addUser(user);
 		Transaction transaction = session.beginTransaction();
 		session.save(user);
 		transaction.commit();
 	}
+
+
 
 	public void close() {
 		session.close();
