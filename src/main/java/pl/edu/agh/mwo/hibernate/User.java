@@ -7,6 +7,7 @@ import java.util.Set;
 @Entity
 @Table(name = "users")
 public class User {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -18,7 +19,7 @@ public class User {
     private String joinDate;
 
     @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "album_id")
+    @JoinColumn(name = "users_id")
     private Set<Album> albums = new HashSet<>();
 
     @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
@@ -28,6 +29,11 @@ public class User {
             inverseJoinColumns = @JoinColumn(name = "photo_id")
     )
     Set<Photo> photos = new HashSet<>();
+
+    public User(String username, String joinDate) {
+        this.username = username;
+        this.joinDate = joinDate;
+    }
 
     public Set<Album> getAlbums() {
         return albums;
@@ -71,7 +77,7 @@ public class User {
 
     @Override
     public String toString() {
-        return "Album{" + "id=" + id + ", username=" + username + ", joinDate" + joinDate + '}';
+        return "User{" + "id=" + id + ", username=" + username + ", joinDate" + joinDate + '}';
     }
 
 }

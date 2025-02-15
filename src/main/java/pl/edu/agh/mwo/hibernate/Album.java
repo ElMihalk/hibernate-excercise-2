@@ -19,15 +19,20 @@ public class Album {
     private String description;
 
     @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "photo_id")
-    private Set<Photo> albums = new HashSet<>();
+    @JoinColumn(name = "albums_id")
+    private Set<Photo> photos = new HashSet<>();
 
-    public Set<Photo> getAlbums() {
-        return albums;
+    public Album(String name, String description) {
+        this.name = name;
+        this.description = description;
+    }
+
+    public Set<Photo> getPhotos() {
+        return photos;
     }
 
     public void addPhoto(Photo photo) {
-        albums.add(photo);
+        photos.add(photo);
     }
 
     public String getName() {
