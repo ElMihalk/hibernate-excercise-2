@@ -13,22 +13,15 @@ public class Main {
 
 	public static void main(String[] args) {
 		Main main = new Main();
-//		1. Dodaj użytkowników, albumy, zdjęcia, polubienia.
-//		main.addUser(); //4.1.
 
-//		2. Usuń polubienie, zdjęcie, album, użytkownika — tak, aby
-//		zaprezentować każdy z poniższych przypadków:
-//			1. usunięcie polubienia nie wpłynie na pozostałe elementy,
-//			2. usunięcie zdjęcia usunie jego polubienia,
-//			3. usunięcie albumu usunie zdjęcia w nim zawarte (wraz z
-//			konsekwencjami usunięcia zdjęcia),
-//			4. usunięcie użytkownika usunie jego albumy (wraz z
-//			konsekwencjami usunięcia albumu) i polubienia.
+//		Funkcje realizujące instrukcje z punktu 4.
+//		main.addUser(); //4.1.
 //		main.removeLike(); //4.2.1
-		main.removePhoto();
+//		main.removePhoto(); //4.2.2
+//		main.removeAlbum(); //4.2.3
+//		main.removeUser(); //4.2.4
 
 		main.printUsers();
-		// tu wstaw kod aplikacji
 		
 		main.close();
 	}
@@ -88,11 +81,32 @@ public class Main {
         transaction.commit();
     }
 
+
 	public void removePhoto(){
 		Query<Photo> query =  session.createQuery("from Photo p where p.id = 9", Photo.class);
 		Photo photo = query.uniqueResult();
 		Transaction transaction = session.beginTransaction();
+		for (User user : photo.getUsers()){
+			photo.removeUser(user);
+			session.update(user);
+		}
 		session.delete(photo);
+		transaction.commit();
+	}
+
+	public void removeAlbum(){
+		Query<Album> query = session.createQuery("from Album a where a.id = 5", Album.class);
+		Album album = query.uniqueResult();
+		Transaction transaction = session.beginTransaction();
+		session.delete(album);
+		transaction.commit();
+	}
+
+	public void removeUser(){
+		Query<User> query = session.createQuery("from User u where u.id = 3");
+		User user = query.uniqueResult();
+		Transaction transaction = session.beginTransaction();
+		session.delete(user);
 		transaction.commit();
 	}
 
