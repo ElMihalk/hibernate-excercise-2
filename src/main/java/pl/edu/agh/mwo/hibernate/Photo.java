@@ -28,6 +28,11 @@ public class Photo {
     public Photo() {
     }
 
+    public void removeUser(User user){
+        this.users.remove(user);
+        user.getPhotos().remove(this);
+    }
+
     public Set<User> getUsers() {
         return users;
     }
