@@ -20,6 +20,19 @@ public class Photo {
     @ManyToMany(mappedBy = "photos", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private Set<User> users = new HashSet<>();
 
+    public Photo(String name, String date) {
+        this.name = name;
+        this.date = date;
+    }
+
+    public Photo() {
+    }
+
+    public void removeUser(User user){
+        this.users.remove(user);
+        user.getPhotos().remove(this);
+    }
+
     public Set<User> getUsers() {
         return users;
     }

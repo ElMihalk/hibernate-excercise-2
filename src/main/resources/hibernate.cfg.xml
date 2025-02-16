@@ -14,6 +14,9 @@
 		<property name="connection.password"></property>
 	
 		<!-- tu wstaw mapowania: <mapping class="pl.edu.agh.mwo.hibernate.NazwaKlasy"/> -->
-		
+		<mapping class="pl.edu.agh.mwo.hibernate.Album"/>
+		<mapping class="pl.edu.agh.mwo.hibernate.Photo"/>
+		<mapping class="pl.edu.agh.mwo.hibernate.User"/>
+
 	</session-factory>
 </hibernate-configuration>

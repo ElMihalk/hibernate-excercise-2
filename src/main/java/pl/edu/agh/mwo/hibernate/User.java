@@ -24,8 +24,8 @@ public class User {
 
     @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinTable(
-            name = "users_photos",
-            joinColumns = @JoinColumn(name = "user_id"),
+            name = "users_photo",
+            joinColumns = @JoinColumn(name = "users_id"),
             inverseJoinColumns = @JoinColumn(name = "photo_id")
     )
     Set<Photo> photos = new HashSet<>();
@@ -33,6 +33,9 @@ public class User {
     public User(String username, String joinDate) {
         this.username = username;
         this.joinDate = joinDate;
+    }
+
+    public User() {
     }
 
     public Set<Album> getAlbums() {

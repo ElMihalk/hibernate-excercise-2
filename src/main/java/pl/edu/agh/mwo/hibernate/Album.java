@@ -27,6 +27,9 @@ public class Album {
         this.description = description;
     }
 
+    public Album() {
+    }
+
     public Set<Photo> getPhotos() {
         return photos;
     }
