@@ -1,0 +1,29 @@
+CREATE TABLE users (id INTEGER PRIMARY KEY, username TEXT, joinDate TEXT);
+INSERT INTO users (id, username, joinDate) VALUES (1, 'JohnDoe23', '31.12.2024');
+INSERT INTO users (id, username, joinDate) VALUES (2, 'JaneDoe45', '31.12.2024');
+
+CREATE TABLE users_photo (users_id BIGINT REFERENCES users(id), photo_id BIGINT REFERENCES photo(id), PRIMARY KEY (users_id, photo_id));
+INSERT INTO users_photo (users_id, photo_id) VALUES (2, 1);
+INSERT INTO users_photo (users_id, photo_id) VALUES (2, 2);
+INSERT INTO users_photo (users_id, photo_id) VALUES (2, 3);
+INSERT INTO users_photo (users_id, photo_id) VALUES (2, 4);
+INSERT INTO users_photo (users_id, photo_id) VALUES (1, 5);
+INSERT INTO users_photo (users_id, photo_id) VALUES (1, 6);
+INSERT INTO users_photo (users_id, photo_id) VALUES (1, 7);
+INSERT INTO users_photo (users_id, photo_id) VALUES (1, 8);
+
+CREATE TABLE photo (id INTEGER PRIMARY KEY, name TEXT, date TEXT, albums_id BIGINT REFERENCES albums (id));
+INSERT INTO photo (id, name, date, albums_id) VALUES (1, 'Pies', '01.01.2025', 1);
+INSERT INTO photo (id, name, date, albums_id) VALUES (2, 'Kot', '01.01.2025', 1);
+INSERT INTO photo (id, name, date, albums_id) VALUES (3, 'Paproć', '01.01.2025', 2);
+INSERT INTO photo (id, name, date, albums_id) VALUES (4, 'Psiząb', '01.01.2025', 2);
+INSERT INTO photo (id, name, date, albums_id) VALUES (5, 'Wawel', '01.01.2025', 3);
+INSERT INTO photo (id, name, date, albums_id) VALUES (6, 'Sukiennice', '01.01.2025', 3);
+INSERT INTO photo (id, name, date, albums_id) VALUES (7, 'Łeba', '01.01.2025', 4);
+INSERT INTO photo (id, name, date, albums_id) VALUES (8, 'Duszniki Zdrój', '01.01.2025', 4);
+
+CREATE TABLE albums (id INTEGER PRIMARY KEY, name TEXT, description TEXT, users_id BIGINT REFERENCES users (id));
+INSERT INTO albums (id, name, description, users_id) VALUES (1, 'Album 1', 'Zwierzęta', 1);
+INSERT INTO albums (id, name, description, users_id) VALUES (2, 'Album 2', 'Rośliny', 1);
+INSERT INTO albums (id, name, description, users_id) VALUES (3, 'Album 3', 'Zabytki', 2);
+INSERT INTO albums (id, name, description, users_id) VALUES (4, 'Album 4', 'Widoki', 2);
